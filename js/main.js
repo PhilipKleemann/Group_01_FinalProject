@@ -4,7 +4,10 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v10',
   center: [-122.33, 47.61],
-  zoom: 10.7
+  zoom: 12,
+  pitch: 45,
+  bearing: -17.6,
+  antialias: true
 });
 
 // Navigation controls
@@ -33,7 +36,7 @@ map.on('load', async () => {
   map.addSource('neighborhoods', { type: 'geojson', data: neighborhoods });
   map.addSource('dumping', { type: 'geojson', data: 'assets/dumping.geojson' });
   map.addSource('underdrains', { type: 'geojson', data: 'assets/underdrains.geojson' });
-
+  
   // Choropleth
   map.addLayer({
     id: 'neighborhoods-layer',
@@ -53,6 +56,50 @@ map.on('load', async () => {
       'fill-opacity': 0.6
     }
   });
+
+  // 3D BUILDINGS
+  
+  const layers = map.getStyle().layers;
+
+  // Find first label layer to insert beneath it
+  const labelLayerId = layers.find(
+    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+  ).id;
+
+  map.addLayer(
+    {
+      id: 'add-3d-buildings',
+      source: 'composite',
+      'source-layer': 'building',
+      filter: ['==', 'extrude', 'true'],
+      type: 'fill-extrusion',
+      minzoom: 9,
+      paint: {
+        'fill-extrusion-color': '#aaa',
+
+        'fill-extrusion-height': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          9, ['*', ['get', 'height'], 6],   // BIG exaggeration when zoomed out
+          11, ['*', ['get', 'height'], 3],
+          13, ['get', 'height']             // normal height when zoomed in
+        ],
+
+        'fill-extrusion-base': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          9, ['*', ['get', 'min_height'], 6],
+          11, ['*', ['get', 'min_height'], 3],
+          13, ['get', 'min_height']
+    ],
+
+        'fill-extrusion-opacity': 0.6
+      }
+    },
+    labelLayerId
+  );
 
   // Borders
   map.addLayer({
