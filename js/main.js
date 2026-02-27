@@ -19,6 +19,7 @@ map.on('load', async () => {
   const neighborhoods = await fetch('assets/neighborhoods.geojson').then(res => res.json());
   const dumpingData = await fetch('assets/dumping.geojson').then(res => res.json());
   const equityIndex = await fetch('assets/equity_index.geojson').then(res => res.json());
+  const wasteFacilityData = await fetch('assets/waste_facility.geojson').then(res => res.json());
 
   // Count dumpings per neighborhood
   neighborhoods.features.forEach(n => {
@@ -41,7 +42,7 @@ map.on('load', async () => {
   map.addSource('equity', { type: 'geojson', data: equityIndex });
   map.addSource('dumping', { type: 'geojson', data: 'assets/dumping.geojson' });
   map.addSource('underdrains', { type: 'geojson', data: 'assets/underdrains.geojson' });
-  map.addSource('waste-facility', { type: 'geojson', data: 'assets/waste_facility.geojson' });
+  map.addSource('waste-facility', { type: 'geojson', data: wasteFacilityData });
 
 
   // Equity Index choropleth only (composite quintile — most disadvantage = darkest)
@@ -128,20 +129,6 @@ map.on('load', async () => {
   });
 
   map.addLayer({
-    id: 'waste-facility-layer',
-    type: 'circle',
-    source: 'waste-facility',
-    paint: {
-      'circle-radius': 6,
-      'circle-color': '#16ad34ff',
-      'circle-opacity': 0.8,
-      'circle-stroke-opacity': 0.8,
-      'circle-stroke-width': 10,
-      'circle-stroke-color': 'hsla(0, 0%, 100%, 1.00)'
-    }
-  });
-
-  map.addLayer({
     id: 'dumping-layer',
     type: 'circle',
     source: 'dumping',
@@ -152,6 +139,19 @@ map.on('load', async () => {
       'circle-stroke-opacity': 0.8,
       'circle-stroke-width': 1,
       'circle-stroke-color': 'hsla(0, 0%, 100%, 1.00)'
+    }
+  });
+
+  map.addLayer({
+    id: 'waste-facility-layer',
+    type: 'circle',
+    source: 'waste-facility',
+    paint: {
+      'circle-radius': 10,
+      'circle-color': '#16ad34',
+      'circle-opacity': 1,
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#fff'
     }
   });
 
@@ -184,7 +184,7 @@ map.on('load', async () => {
       plugins: { legend: { display: false } },
       scales: {
         y: { beginAtZero: true, title: { display: true, text: 'Count of Illegal Dumping Reports' } },
-        x: { title: { display: true, text: 'Composite Quintile' } }
+        x: { title: { display: true, text: 'Level of Equity Priority' } }
       }
     }
   });
