@@ -155,7 +155,7 @@ map.on('load', async () => {
     }
   });
 
-  // Chart A: Dumping Frequency by Equity Quintile (1–5)
+  // Dumping Frequency by Equity Quintile Chart(1–5)
   const QUINTILE_ORDER = ['Lowest', 'Second Lowest', 'Middle', 'Second Highest', 'Highest Equity Priority'];
   const quintileToNum = {};
   QUINTILE_ORDER.forEach((q, i) => { quintileToNum[q] = i + 1; });

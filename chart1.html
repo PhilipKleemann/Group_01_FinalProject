@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Chart A: Dumping Frequency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0d1117;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .chart-container {
+      width: 600px;
+      height: 400px;
+      background: #161b22;
+      padding: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="chart-container">
+    <canvas id="quintileChart"></canvas>
+  </div>
+
+  <script>
+    // Load equity GeoJSON first
+    fetch('assets/equity_index.geojson')
+      .then(res => res.json())
+      .then(equityIndex => {
+
+        // Dumping Frequency by Equity Quintile Chart (1–5)
+        const QUINTILE_ORDER = ['Lowest', 'Second Lowest', 'Middle', 'Second Highest', 'Highest Equity Priority'];
+        const quintileToNum = {};
+        QUINTILE_ORDER.forEach((q, i) => { quintileToNum[q] = i + 1; });
+
+        const quintileCounts = [0, 0, 0, 0, 0];
+        equityIndex.features.forEach(f => {
+          const q = f.properties.COMPOSITE_QUINTILE;
+          const idx = quintileToNum[q];
+          if (idx != null) quintileCounts[idx - 1] += f.properties.dumping_count || 0;
+        });
+
+        const ctxQuintile = document.getElementById('quintileChart').getContext('2d');
+        new Chart(ctxQuintile, {
+          type: 'bar',
+          data: {
+            labels: ['1', '2', '3', '4', '5'],
+            datasets: [{
+              label: 'Illegal Dumping Reports',
+              data: quintileCounts,
+              backgroundColor: '#E74C3C'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { 
+                beginAtZero: true, 
+                title: { display: true, text: 'Count of Illegal Dumping Reports' } 
+              },
+              x: { 
+                title: { display: true, text: 'Level of Equity Priority' } 
+              }
+            }
+          }
+        });
+
+      })
+      .catch(err => console.error("GeoJSON failed to load:", err));
+  </script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+</body>
+</html>
