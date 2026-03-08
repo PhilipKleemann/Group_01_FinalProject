@@ -4,9 +4,9 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v10',
   center: [-122.33, 47.61],
-  zoom: 12,
-  pitch: 45,
-  bearing: -17.6,
+  zoom: 10.7,
+  pitch: 0,
+  bearing: 0,
   antialias: true
 });
 
@@ -208,7 +208,7 @@ map.on('load', async () => {
 
   // Reset button
   document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-122.33, 47.61], zoom: 10.7 });
+    map.flyTo({ center: [-122.33, 47.61], zoom: 10.7, pitch: 0, bearing: 0 });
   });
 
 });
