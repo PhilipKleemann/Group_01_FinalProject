@@ -12,7 +12,7 @@ This project includes a thematic chloropleth map which displays the amount of il
 
 ## Webmap Link
 Live Webmap:  
-[Click here to view the map](https://philipkleemann.github.io/SmartDashboard/)
+[Click here to view the map](https://philipkleemann.github.io/Group_01_FinalProject/)
 
 ---
  
