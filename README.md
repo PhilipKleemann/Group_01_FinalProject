@@ -1,4 +1,4 @@
-# Seattle Waste Equity Dashboard
+# Seattle Dumping & Equity Dashboard
 
 ## Team Members
 - Philip Kleemann
