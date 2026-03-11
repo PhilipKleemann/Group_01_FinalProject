@@ -50,5 +50,12 @@ Figure 2: Dashboard which the title, legend, and bar chart which help the viewer
 
 ---
 
+## Acknowledgment
+Our team would like to thank the following people and resources for helping support this project:
+
+- Our instructor and TAs for providing great feedback and support throughout the quarter.
+- All team members for their collaboration efforts.
+- Data sources such as Seattle Open Data which allowed made this project to be possible.
+
 ## AI Disclosure 
 No AI tools were used in this assignment.
