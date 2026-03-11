@@ -42,5 +42,9 @@ Figure 2: Dashboard which the title, legend, and bar chart which help the viewer
 
 ---
 
+## Libraries 
+- Mapbox Gl JS - Used to create the interactive web map, points, polygons, navigation tools, 3D buildings.
+- Chart.js Used to creat the bar chart that shows the
+
 ## AI Disclosure 
 No AI tools were used in this assignment.
