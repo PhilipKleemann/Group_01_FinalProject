@@ -240,12 +240,10 @@ footer {
 }
 
 a {
-    color: #4da6ff;
     text-decoration: underline;
-    font-weight: 600;
 }
 
 a:hover {
-    color: #003d80;  
+    color: #0066cc; 
     cursor: pointer;
 }
