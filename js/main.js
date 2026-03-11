@@ -2,8 +2,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGhpbGlwa2xlZW1hbm4yIiwiYSI6ImNtaWp5c2p2MDE2a
 
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/dark-v10',
   center: [-122.33, 47.61],
+  style: 'mapbox://styles/mapbox/dark-v10',
   zoom: 10.7,
   pitch: 0,
   bearing: 0,
