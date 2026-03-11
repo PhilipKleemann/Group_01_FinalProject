@@ -24,14 +24,16 @@ Overall, the goal of this project is to be able to visualize a clear understandi
 
 ---
 
-
-
+![View of Map](img/ss1.png)
+![Legend & Bar Chart](img/ss2.png)
 
 
  
 ## Data Source Used
 
 - [Seattle Open Data](https://data.seattle.gov/)
+
+---
 
 ## AI Disclosure 
 No AI tools were used in this assignment.
