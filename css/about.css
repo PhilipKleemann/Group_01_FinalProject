@@ -70,7 +70,7 @@ a {
 
 /* project ideas and goals section */
 .top-section {
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
 }
 
 .top-section h1 {
@@ -111,6 +111,52 @@ a {
     height: 4px;
     background: #2D502E;
     margin: 10px 0 0;
+}
+
+.results h2::after {
+    content: "";
+    display: block;
+    width: 210px;
+    height: 4px;
+    background: #2D502E;
+    margin: 10px 0 0;
+}
+
+.methods h2::after {
+    content: "";
+    display: block;
+    width: 375px;
+    height: 4px;
+    background: #2D502E;
+    margin: 10px 0 0;
+}
+
+/* results section */
+.results {
+    padding: 1rem 1rem;
+}
+
+.results p {
+    font-size: 1.1rem;
+    max-width: 1080px;
+    line-height: 1.6;
+}
+
+
+/* methods section */
+.methods {
+    padding: 2rem 1rem;
+}
+
+.methods-list {
+    margin-top: 1rem;
+    max-width: 1000px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.methods-list li {
+    margin-bottom: 0.6rem;
 }
 
 /* team stuff */
