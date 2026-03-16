@@ -8,7 +8,7 @@ html, body {
  font-size: 14px;
  line-height: 1.5;
  color: #8b949e;
- background: #0d1117;
+ background: radial-gradient(circle at top left, #161b22 0, #0d1117 45%, #02040a 100%);
  display: flex;
  overflow: hidden;
 }
@@ -23,7 +23,7 @@ html, body {
  display: flex;
  flex-direction: column;
  gap: 16px;
- box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+ box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
  z-index: 10;
  height: 100vh;
  box-sizing: border-box;
@@ -157,13 +157,14 @@ html, body {
 
 /* ----- Chart panels ----- */
 .chart-panel {
- background: rgba(22, 27, 34, 0.98);
- border: 1px solid rgba(255, 255, 255, 0.08);
+ background: linear-gradient(145deg, rgba(22, 27, 34, 0.98), rgba(13, 17, 23, 0.98));
+ border: 1px solid rgba(255, 255, 255, 0.06);
  border-radius: 8px;
  padding: 12px;
  min-height: 180px;
  display: flex;
  flex-direction: column;
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -171,8 +172,28 @@ html, body {
  margin: 0 0 8px 0;
  font-size: 12px;
  font-weight: 600;
- color: #8b949e;
+ color: #c9d1d9;
  text-align: center;
+ letter-spacing: 0.06em;
+ text-transform: uppercase;
+}
+
+/* Extra padding inside bar chart panel so axes stay inside */
+#chart-quintile {
+ padding-bottom: 24px;
+}
+
+/* Tract info text */
+#tract-details h5 {
+ margin: 2px 0 6px 0;
+ font-size: 13px;
+ font-weight: 600;
+ color: #e6edf3;
+}
+
+#tract-details p {
+ margin: 2px 0;
+ font-size: 12px;
 }
 
 
@@ -226,7 +247,7 @@ html, body {
 
 /* ----- Reset button ----- */
 #reset {
- margin-top: auto;
+ margin-top: 20px;
  padding: 12px 24px;
  font-family: "Open Sans", sans-serif;
  font-size: 14px;
